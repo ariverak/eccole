@@ -1,16 +1,39 @@
+import { Container, Content, List, Text, Header } from 'native-base';
 import React, { Component } from 'react';
-import { Container, Header, Content, Button, Text,Icon} from 'native-base';
-export default class ButtonThemeExample extends Component {
-  render() {
-    return (
-      <Container>
-        <Content>
-          {/* <Button onPress={()=>this.props.navigation.navigate("Services")}>
-            <Text> Services </Text>
-          </Button>
-          <Icon name="phone" type="MaterialIcons" /> */}
-        </Content>
-      </Container>
-    );
-  }
+import { View,StyleSheet } from 'react-native';
+import { Menu, MenuOption, MenuOptions, MenuTrigger } from 'react-native-popup-menu';
+import StoreListItem from '../components/StoreListItem';
+import DropdownCategory from '../components/DropdownCategory';
+
+
+
+export default class HomeScreen extends Component {
+    render() {
+        return (
+            <Container>
+                <Header style={styles.header}>
+                    <DropdownCategory />
+                </Header>
+                <Content>
+                    <List>
+                        <StoreListItem />
+                        <StoreListItem />
+                        <StoreListItem />
+                        <StoreListItem />
+                        <StoreListItem />
+                    </List>
+                </Content>
+            </Container>
+        );
+    }
 }
+
+const styles = StyleSheet.create({
+    header : {
+        position : 'relative',
+        height : 45,
+        backgroundColor : 'white',
+        alignItems : 'center',
+        justifyContent : 'flex-start'
+    }
+})
