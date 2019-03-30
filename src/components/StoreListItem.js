@@ -17,19 +17,21 @@ const styles = StyleSheet.create({
     }
 })
 
-export default class ListThumbnailExample extends Component {
+export default class StoreListItem extends Component {
   render() {
+    const {store,toStoreDetail} = this.props;
+    const {name,businessHours,direction} = store;
     return (
         <ListItem thumbnail>
           <Left>
-            <Thumbnail large square source={{ uri: 'https://www.leciel.cl/wp-content/uploads/2017/03/clinica-providencia.png' }} />
+            <Thumbnail style={{borderRadius : 10}} large square source={{ uri: 'https://www.leciel.cl/wp-content/uploads/2017/03/clinica-providencia.png' }} />
           </Left>
           <Body>
-            <Text numberOfLines={1}>Clinica Estetica Le Ciel</Text>
-            <Text note numberOfLines={1}>09:30 - 21:00</Text>
-            <Text note numberOfLines={1}>Amador Barrientos #1050</Text>
+            <Text numberOfLines={1}>{name}</Text>
+            <Text note numberOfLines={1}>{businessHours}</Text>
+            <Text note numberOfLines={1}>{direction}</Text>
             <View style={styles.infoButtonContainer}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>toStoreDetail(store)}>
                     <Icon name="info" type="MaterialIcons" style={{color : 'gray'}} />
                 </TouchableOpacity>
             </View>

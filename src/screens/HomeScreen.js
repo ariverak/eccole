@@ -5,9 +5,43 @@ import { Menu, MenuOption, MenuOptions, MenuTrigger } from 'react-native-popup-m
 import StoreListItem from '../components/StoreListItem';
 import DropdownCategory from '../components/DropdownCategory';
 
-
+const stores = [
+    {   
+        id : 0,
+        name : 'Clinica Estetica Le Ciel',
+        businessHours : '09:30 - 21:00',
+        direction : 'Amador Barrientos #1050'
+    },
+    {
+        id : 1,
+        name : 'Clinica Estetica Le Ciel',
+        businessHours : '09:30 - 21:00',
+        direction : 'Amador Barrientos #1050'
+    },
+    {
+        id : 2,
+        name : 'Clinica Estetica Le Ciel',
+        businessHours : '09:30 - 21:00',
+        direction : 'Amador Barrientos #1050'
+    },
+    {
+        id : 3,
+        name : 'Clinica Estetica Le Ciel',
+        businessHours : '09:30 - 21:00',
+        direction : 'Amador Barrientos #1050'
+    },
+    {
+        id : 4,
+        name : 'Clinica Estetica Le Ciel',
+        businessHours : '09:30 - 21:00',
+        direction : 'Amador Barrientos #1050'
+    }
+]
 
 export default class HomeScreen extends Component {
+    toStoreDetail = (store)=>{
+        this.props.navigation.navigate("StoreDetail",{store})
+    }
     render() {
         return (
             <Container>
@@ -16,11 +50,11 @@ export default class HomeScreen extends Component {
                 </Header>
                 <Content>
                     <List>
-                        <StoreListItem />
-                        <StoreListItem />
-                        <StoreListItem />
-                        <StoreListItem />
-                        <StoreListItem />
+                        {stores.map(store=>(
+                            <React.Fragment key={store.id}>
+                                <StoreListItem store={store} toStoreDetail={this.toStoreDetail} />
+                            </React.Fragment>
+                        ))}
                     </List>
                 </Content>
             </Container>

@@ -1,16 +1,24 @@
 import React from 'react'
-import {TouchableOpacity,View} from 'react-native'
-import {Icon} from 'native-base'
-import {createBottomTabNavigator, createStackNavigator} from 'react-navigation'
-import HomeScreen from '../screens/HomeScreen';
-import ServicesScreen from '../screens/ServicesScreen';
+import {createStackNavigator} from 'react-navigation'
 import BottomTabNavigator from './BottomTabNavigator';
+import StoreDetailScreen from '../screens/StoreDetailScreen';
+import { fromBottom } from 'react-navigation-transitions';
 
 export default createStackNavigator({
   BottomTabNavigator : BottomTabNavigator,
-  Services : ServicesScreen
-},{
-  navigationOptions : {
-    
+  StoreDetail : {
+    screen : StoreDetailScreen
   }
+},{
+  defaultNavigationOptions : {
+    headerStyle : {
+      backgroundColor : '#7a5aad'
+    },
+    headerTintColor : 'white',
+    headerTitleStyle : {
+      color : 'white'
+    }
+  },
+  headerMode : "screen",
+  transitionConfig : ()=>fromBottom(),
 })
