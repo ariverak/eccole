@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { View,StyleSheet,Dimensions } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import CarouselTest from './CarouselTest/CarouselTest'
+import MiniCarousel from '../../components/MiniCarousel'
 import { Container,Card, Tab, Tabs, TabHeading, Icon,Text, Segment, Button, Content } from 'native-base';
+import ServicesTab from './components/ServicesTab';
+import { colors } from '../../constants';
 
 const widthScreen = Dimensions.get("screen").width;
 const heightScreen = Dimensions.get("screen").height;
@@ -16,6 +18,9 @@ export default class StoreDetailScreen extends Component {
         return (
             <Container>
                 <Tabs locked tabBarTextStyle={{color : 'red'}} tabBarUnderlineStyle={{backgroundColor : 'white'}}>
+                    <Tab heading={<TabHeading style={styles.tab}><Icon name="assignment" type="MaterialIcons" /><Text>Servicios</Text></TabHeading>}>
+                       <ServicesTab />
+                    </Tab>
                     <Tab heading={<TabHeading style={styles.tab}><Icon name="info" type="MaterialIcons" /><Text>Información</Text></TabHeading>}>
                         <Content>
                             <View style={styles.mapContainer}>
@@ -40,14 +45,13 @@ export default class StoreDetailScreen extends Component {
                                     </MapView>
                                 </Card>
                             </View>
-                            <CarouselTest />
-                            <Text style={{textAlign : 'center',paddingHorizontal : 15,marginTop : 10,color  : 'gray'}}>
-                                Clínica Cela, pioneros en traer al mercado Chileno en el año 2005, la tecnología de depilación láser Alexandrita desde Alemania, actualmente Clínica Cela se ha convertido en una clínica de tratamientos láser, junto a sus servicios en tratamientos Reductivos Corporales y tratamientos faciales, para entregar el mejor servicio a más de cien mil pacientes atendidos en sus cinco sucursales. Contamos con tecnología más eficaz y segura para todos los tratamientos láser.
-                            </Text>
+                            <MiniCarousel />
+                            <View style={styles.description}>
+                                <Text style={{textAlign : 'center',paddingHorizontal : 15,marginTop : 10,color  : 'gray'}}>
+                                    Clínica Cela, pioneros en traer al mercado Chileno en el año 2005, la tecnología de depilación láser Alexandrita desde Alemania, actualmente Clínica Cela se ha convertido en una clínica de tratamientos láser, junto a sus servicios en tratamientos Reductivos Corporales y tratamientos faciales, para entregar el mejor servicio a más de cien mil pacientes atendidos en sus cinco sucursales. Contamos con tecnología más eficaz y segura para todos los tratamientos láser.
+                                </Text>
+                            </View>
                         </Content>
-                    </Tab>
-                    <Tab heading={<TabHeading style={styles.tab}><Icon name="assignment" type="MaterialIcons" /><Text>Servicios</Text></TabHeading>}>
-                        {/* <Tab2 /> */}
                     </Tab>
                 </Tabs>
             </Container>
@@ -57,7 +61,7 @@ export default class StoreDetailScreen extends Component {
 
 const styles = StyleSheet.create({
     tab : {
-        backgroundColor : '#7a5aad'
+        backgroundColor : colors.primary
     },
     mapContainer: {
       alignItems: 'center',
@@ -74,4 +78,7 @@ const styles = StyleSheet.create({
       right: 0,
       bottom: 0,
     },
+    description : {
+        paddingBottom : 15
+    }
 });

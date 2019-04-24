@@ -3,6 +3,7 @@ import {createStackNavigator} from 'react-navigation'
 import BottomTabNavigator from './BottomTabNavigator';
 import StoreDetailScreen from '../screens/StoreDetailScreen';
 import { fromBottom } from 'react-navigation-transitions';
+import { colors } from '../constants';
 
 export default createStackNavigator({
   BottomTabNavigator : BottomTabNavigator,
@@ -12,7 +13,7 @@ export default createStackNavigator({
 },{
   defaultNavigationOptions : {
     headerStyle : {
-      backgroundColor : '#7a5aad'
+      backgroundColor : colors.primary
     },
     headerTintColor : 'white',
     headerTitleStyle : {

@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ServicesScreen from '../screens/ServicesScreen';
 import MyReservationsScreen from '../screens/MyReservations';
 import AccountScreen from '../screens/Account';
+import { colors } from '../constants';
 
 export default { 
     screen: createBottomTabNavigator(
@@ -27,12 +28,12 @@ export default {
           title : titleTraductor(navigation.state.routeName),
           tabBarOptions: {
             style: {
-              backgroundColor: '#7a5aad',
+              backgroundColor: colors.primary,
             },
             activeTintColor: 'white',
             inactiveTintColor: '#bdadd6',
           },
-          tabBarIcon: ({ focused, horizontal, tintColor }) => {
+          tabBarIcon: ({ focused }) => {
             const { routeName } = navigation.state;
             let iconName = 'phone';
             let iconType = 'MaterialIcons';
@@ -63,7 +64,7 @@ export default {
       title : getTitle(navigation),
       headerTintColor: 'white',
       headerStyle : {
-        backgroundColor : '#7a5aad'
+        backgroundColor : colors.primary
       },
       ...getHeaderComponents(navigation)
   })
@@ -80,7 +81,7 @@ function getHeaderComponents(navigation){
   const routeName = routes[tabIndex].routeName;
   return {
      headerRight : routeName === 'Home' ? (
-        <Header noShadow style={{width : 300,backgroundColor : '#7a5aad'}} searchBar rounded>
+        <Header noShadow style={{width : 300,backgroundColor : colors.primary}} searchBar rounded>
           <Item>
             <Icon name="ios-search" />
             <Input placeholder="Ej. Clínica Estetica" />

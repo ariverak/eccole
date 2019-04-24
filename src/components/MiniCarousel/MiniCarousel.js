@@ -29,9 +29,9 @@ const  ENTRIES1 = [
     }
 ];
 
-const SLIDER_1_FIRST_ITEM = 0;
+const SLIDER_1_FIRST_ITEM = 1;
 
-class CarouselTest extends React.Component {
+class MiniCarousel extends React.Component {
     state = {
         currentItem : 0
     }
@@ -61,13 +61,13 @@ class CarouselTest extends React.Component {
                   // inactiveSlideShift={20}
                   containerCustomStyle={styles.slider}
                   contentContainerCustomStyle={styles.sliderContentContainer}
-                  loop={true}
+                  loop={false}
                   autoplay={false}
                   autoplayDelay={500}
                   autoplayInterval={3000}
                   onSnapToItem={(index) => this.setState({ currentItem: index }) }
                 />
-                <Pagination
+                {/* <Pagination
                   dotsLength={ENTRIES1.length}
                   activeDotIndex={currentItem}
                   containerStyle={styles.paginationContainer}
@@ -78,10 +78,10 @@ class CarouselTest extends React.Component {
                   inactiveDotScale={0.6}
                   carouselRef={this._slider1Ref}
                   tappableDots={!!this._slider1Ref}
-                />
+                /> */}
             </View>
         );
     }
 }
 
-export default CarouselTest;
+export default MiniCarousel;
