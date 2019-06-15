@@ -3,9 +3,7 @@ import {TouchableOpacity,View} from 'react-native'
 import {Icon,Header,Item, Input, Button,Text} from 'native-base'
 import {createBottomTabNavigator} from 'react-navigation'
 import HomeScreen from '../screens/HomeScreen';
-import ServicesScreen from '../screens/ServicesScreen';
-import MyReservationsScreen from '../screens/MyReservations';
-import AccountScreen from '../screens/Account';
+import AddLocalScreen from '../screens/AddLocalScreen';
 import { colors } from '../constants';
 
 export default { 
@@ -14,14 +12,8 @@ export default {
         Home: {
           screen : HomeScreen
         },
-        Services: {
-          screen : ServicesScreen
-        },
-        MyReservations: {
-          screen : MyReservationsScreen
-        },
-        Account: {
-          screen : AccountScreen
+        AddLocal: {
+          screen : AddLocalScreen
         }
       },{
         defaultNavigationOptions : ({ navigation }) => ({
@@ -39,19 +31,11 @@ export default {
             let iconType = 'MaterialIcons';
             switch(routeName) {
               case 'Home' : 
-                iconName = `home`;
+                iconName = `store`;
                 iconType = 'MaterialIcons'
               break;
-              case 'Services' : 
-                iconName = `whatshot`;
-                iconType = 'MaterialIcons'
-              break;
-              case 'MyReservations' : 
-                iconName = `date-range`;
-                iconType = 'MaterialIcons'
-              break;
-              case 'Account' : 
-                iconName = `account-circle`;
+              case 'AddLocal' : 
+                iconName = `add`;
                 iconType = 'MaterialIcons'
               break;
             }
@@ -84,7 +68,7 @@ function getHeaderComponents(navigation){
         <Header noShadow style={{width : 300,backgroundColor : colors.primary}} searchBar rounded>
           <Item>
             <Icon name="ios-search" />
-            <Input placeholder="Ej. Clínica Estetica" />
+            <Input placeholder="Ej. Comida China" />
             <Icon type="MaterialIcons" name="store" style={{color : 'gray'}} />
           </Item>
         </Header>
@@ -101,10 +85,8 @@ function getHeaderComponents(navigation){
 
 const titleTraductor = (title)=>{
   const obj = {
-    Home : 'Home',
-    Services : 'Servicios',
-    MyReservations : 'Mis Reservas',
-    Account : 'Mi Cuenta'
+    Home : 'Locales',
+    AddLocal : 'Agregar Local'
   }
   return obj[title];
 }

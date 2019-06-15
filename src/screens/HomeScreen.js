@@ -1,58 +1,48 @@
 import { Container, Content, List, Text, Header } from 'native-base';
 import React, { Component } from 'react';
 import { View,StyleSheet } from 'react-native';
+import { withNavigationFocus } from 'react-navigation';
 import { Menu, MenuOption, MenuOptions, MenuTrigger } from 'react-native-popup-menu';
-import StoreListItem from '../components/StoreListItem';
+import LocalListItem from '../components/LocalListItem';
 import DropdownCategory from '../components/DropdownCategory';
+import {deleteLocal} from '../services/sqlite'
+import {getAllLocals} from '../services/sqlite'
 
-const stores = [
-    {   
-        id : 0,
-        name : 'Clinica Estetica Le Ciel',
-        businessHours : '09:30 - 21:00',
-        direction : 'Amador Barrientos #1050'
-    },
-    {
-        id : 1,
-        name : 'Clinica Estetica Le Ciel',
-        businessHours : '09:30 - 21:00',
-        direction : 'Amador Barrientos #1050'
-    },
-    {
-        id : 2,
-        name : 'Clinica Estetica Le Ciel',
-        businessHours : '09:30 - 21:00',
-        direction : 'Amador Barrientos #1050'
-    },
-    {
-        id : 3,
-        name : 'Clinica Estetica Le Ciel',
-        businessHours : '09:30 - 21:00',
-        direction : 'Amador Barrientos #1050'
-    },
-    {
-        id : 4,
-        name : 'Clinica Estetica Le Ciel',
-        businessHours : '09:30 - 21:00',
-        direction : 'Amador Barrientos #1050'
+class HomeScreen extends Component {
+    state = {
+        locals : []
     }
-]
-
-export default class HomeScreen extends Component {
-    toStoreDetail = (store)=>{
-        this.props.navigation.navigate("StoreDetail",{store})
+    async componentDidMount(){
+        await this.fetchLocales()
+        this.props.navigation.addListener(
+            'willFocus',
+            async payload => {
+                await this.fetchLocales()
+            }
+        );
+    }
+    fetchLocales = async ()=>{
+        const locals = await getAllLocals()
+        this.setState({
+            locals
+        })
+    }
+    toLocalDetail = (local)=>{
+        this.props.navigation.navigate("LocalDetail",{local})
+    }
+    onDelete = async (id)=>{
+        await deleteLocal(id)
+        await this.fetchLocales()
     }
     render() {
+        const {locals} = this.state;
         return (
             <Container>
-                <Header style={styles.header}>
-                    <DropdownCategory />
-                </Header>
                 <Content>
                     <List>
-                        {stores.map(store=>(
-                            <React.Fragment key={store.id}>
-                                <StoreListItem store={store} toStoreDetail={this.toStoreDetail} />
+                        {locals.map(local=>(
+                            <React.Fragment key={local.id}>
+                                <LocalListItem local={local} toLocalDetail={this.toLocalDetail} onDelete={this.onDelete} />
                             </React.Fragment>
                         ))}
                     </List>
@@ -61,6 +51,8 @@ export default class HomeScreen extends Component {
         );
     }
 }
+
+export default withNavigationFocus(HomeScreen)
 
 const styles = StyleSheet.create({
     header : {
