@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { View,StyleSheet,Dimensions } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
 import MiniCarousel from '../../components/MiniCarousel'
-import { Container,Card, Tab, Tabs, TabHeading, Icon,Text, Segment, Button, Content } from 'native-base';
-import ServicesTab from './components/ServicesTab';
+import { Container,Text, Content } from 'native-base';
 import { colors } from '../../constants';
 
 const widthScreen = Dimensions.get("screen").width;
@@ -22,7 +20,16 @@ export default class LocalDetailScreen extends Component {
                     <MiniCarousel />
                     <View style={styles.description}>
                         <Text style={{textAlign : 'center',paddingHorizontal : 15,marginTop : 10,color  : 'gray'}}>
+                            {local.nombre}
+                        </Text>
+                        <Text style={{textAlign : 'center',paddingHorizontal : 15,marginTop : 10,color  : 'gray'}}>
                             {local.descripcion}
+                        </Text>
+                        <Text style={{textAlign : 'center',paddingHorizontal : 15,marginTop : 10,color  : 'gray'}}>
+                            {local.inicio + " - " + local.termino}
+                        </Text>
+                        <Text style={{textAlign : 'center',paddingHorizontal : 15,marginTop : 10,color  : 'gray'}}>
+                            {local.direccion}
                         </Text>
                     </View>
                 </Content>
